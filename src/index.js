@@ -1,3 +1,9 @@
-import express from 'express';
+import { initMongoConnection } from './db/initMongoConnection.js';
+import { startServer } from './server.js';
 
-const app = express();
+const bootstrap = async () => {
+  await initMongoConnection();
+  startServer();
+};
+
+bootstrap();
