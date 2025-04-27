@@ -12,14 +12,14 @@ import {
 
 const contactsRouter = Router();
 
-contactsRouter.get('/contacts', ctrlWrapper(getContactsController));
+contactsRouter.get('/', ctrlWrapper(getContactsController));
 
-contactsRouter.get('/contacts/:id', ctrlWrapper(getContactByIdController));
+contactsRouter.get('/:id', ctrlWrapper(getContactByIdController));
 
-contactsRouter.post('/contacts', ctrlWrapper(addContactController));
+contactsRouter.post('/', ctrlWrapper(addContactController));
 
-contactsRouter.patch('/contacts/:id', ctrlWrapper(patchContactController));
+contactsRouter.patch('/:id', ctrlWrapper(patchContactController));
 
-contactsRouter.delete('/contacts/:id', ctrlWrapper(deleteContactController));
+contactsRouter.delete('/:id', ctrlWrapper(deleteContactController));
 
 export default contactsRouter;
