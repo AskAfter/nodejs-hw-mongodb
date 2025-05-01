@@ -1,7 +1,5 @@
 import createHttpError from 'http-errors';
 
-// import mongoose from 'mongoose';
-
 import {
   getContacts,
   getContactsById,
