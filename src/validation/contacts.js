@@ -33,7 +33,7 @@ export const addContactSchema = Joi.object({
     .messages(isFavouriteMessages)
     .example('true or false'),
   contactType: Joi.string()
-    .valid(contactTypeVariants)
+    .valid(...contactTypeVariants)
     .default(contactTypeVariants[2])
     .messages(contactTypeMessages),
 }).example(contactTypeVariants[0]);
@@ -59,7 +59,7 @@ export const patchContactSchema = Joi.object({
     .messages(isFavouriteMessages)
     .example('true or false'),
   contactType: Joi.string()
-    .valid(contactTypeVariants)
+    .valid(...contactTypeVariants)
     .default(contactTypeVariants[2])
     .messages(contactTypeMessages)
     .example(contactTypeVariants[0]),
