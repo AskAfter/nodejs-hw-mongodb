@@ -12,10 +12,12 @@ export const getContacts = async ({
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
+  console.log('FILTER:', filter);
+
   const contactsQuery = ContactCollection.find();
 
-  if (filter.isFavorite) {
-    contactsQuery.where('isFavorite').equals(filter.isFavorite);
+  if (typeof filter.isFavourite === 'boolean') {
+    contactsQuery.where('isFavourite').equals(filter.isFavourite);
   }
 
   if (filter.contactType) {
@@ -44,7 +46,9 @@ export const getContactsById = (id) => ContactCollection.findOne({ _id: id });
 export const addContact = (payload) => ContactCollection.create(payload);
 
 export const updateContact = async (id, payload) => {
-  const data = await ContactCollection.findByIdAndUpdate(id, payload);
+  const data = await ContactCollection.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
   return data;
 };
 
