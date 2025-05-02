@@ -25,6 +25,12 @@ userSchema.post('save', handleSaveError);
 userSchema.pre('findByIdAndUpdate', setUpdateSettings);
 userSchema.post('save', handleSaveError);
 
+userSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
+
 const UserCollection = model('user', userSchema);
 
 export default UserCollection;
