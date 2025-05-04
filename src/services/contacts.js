@@ -8,13 +8,14 @@ export const getContacts = async ({
   sortOrder = SORT_ORDER.ASC,
   sortBy = '_id',
   filter = {},
+  userId,
 }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  console.log('FILTER:', filter);
+  // const query = { userId };
 
-  const contactsQuery = ContactCollection.find();
+  const contactsQuery = ContactCollection.find({ userId });
 
   if (typeof filter.isFavourite === 'boolean') {
     contactsQuery.where('isFavourite').equals(filter.isFavourite);
@@ -41,16 +42,19 @@ export const getContacts = async ({
   };
 };
 
-export const getContactsById = (id) => ContactCollection.findOne({ _id: id });
+export const getContactsById = (id, userId) =>
+  ContactCollection.findOne({ _id: id, userId });
 
 export const addContact = (payload) => ContactCollection.create(payload);
 
-export const updateContact = async (id, payload) => {
-  const data = await ContactCollection.findByIdAndUpdate(id, payload, {
-    new: true,
-  });
+export const updateContact = async (id, userId, payload) => {
+  const data = await ContactCollection.findByIdAndUpdate(
+    { _id: id, userId },
+    payload,
+    { new: true },
+  );
   return data;
 };
 
-export const deleteContactById = (id) =>
-  ContactCollection.findOneAndDelete({ _id: id });
+export const deleteContactById = (id, userId) =>
+  ContactCollection.findOneAndDelete({ _id: id, userId });

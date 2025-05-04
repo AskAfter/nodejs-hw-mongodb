@@ -9,6 +9,7 @@ import {
   isFavouriteMessages,
   contactTypeMessages,
 } from '../messages/contactMessages.js';
+import { emailRegex } from '../constants/auth.js';
 
 export const addContactSchema = Joi.object({
   name: Joi.string()
@@ -22,10 +23,10 @@ export const addContactSchema = Joi.object({
     .messages(phoneMessages(3, 20))
     .example('+380961234567'),
   email: Joi.string()
-    .email()
     .min(3)
     .max(20)
     .required()
+    .pattern(emailRegex)
     .messages(emailMessages(3, 20))
     .example('peterparker@email.com'),
   isFavourite: Joi.boolean()

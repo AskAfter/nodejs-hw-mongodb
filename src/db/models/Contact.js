@@ -3,6 +3,7 @@ import { Schema, model } from 'mongoose';
 import { contactTypeVariants } from '../../constants/contactType.js';
 
 import { handleSaveError, setUpdateSettings } from './hooks.js';
+import { emailRegex } from '../../constants/auth.js';
 
 const contactSchema = new Schema(
   {
@@ -16,6 +17,7 @@ const contactSchema = new Schema(
     },
     email: {
       type: String,
+      match: [emailRegex, 'Invalid email format'],
       required: false,
     },
     isFavourite: {
@@ -31,7 +33,7 @@ const contactSchema = new Schema(
     },
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'user',
       required: true,
     },
   },

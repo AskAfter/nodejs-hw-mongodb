@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { handleSaveError, setUpdateSettings } from './hooks.js';
 
+import { emailRegex } from '../../constants/auth.js';
+
 const userSchema = new Schema(
   {
     name: {
@@ -11,7 +13,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/^\S+@\S+\.\S+$/, 'Invalid email format'],
+      match: [emailRegex, 'Invalid email format'],
     },
     password: {
       type: String,

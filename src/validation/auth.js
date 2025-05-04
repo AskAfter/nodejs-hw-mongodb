@@ -4,6 +4,7 @@ import {
   emailMessages,
   passwordMessages,
 } from '../messages/contactMessages.js';
+import { emailRegex } from '../constants/auth.js';
 
 export const registerUserSchema = Joi.object({
   name: Joi.string()
@@ -15,7 +16,7 @@ export const registerUserSchema = Joi.object({
   email: Joi.string()
     .min(3)
     .max(30)
-    .email()
+    .pattern(emailRegex)
     .required()
     .messages(emailMessages(3, 30))
     .example('petterparker@email.com'),
@@ -30,7 +31,7 @@ export const loginUserSchema = Joi.object({
   email: Joi.string()
     .min(3)
     .max(30)
-    .email()
+    .pattern(emailRegex)
     .required()
     .messages(emailMessages(3, 30))
     .example('petterparker@email.com'),

@@ -1,4 +1,4 @@
-import { randomBytes } from 'bcrypt';
+import { randomBytes } from 'crypto';
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 

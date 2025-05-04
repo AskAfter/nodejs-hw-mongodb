@@ -16,7 +16,7 @@ export const setupServer = () => {
   app.use(cookieParser());
   app.use(logger);
 
-  app.use('/contacts', router);
+  app.use(router);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
