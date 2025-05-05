@@ -24,10 +24,10 @@ export const addContactSchema = Joi.object({
     .example('+380961234567'),
   email: Joi.string()
     .min(3)
-    .max(20)
+    .max(30)
     .required()
     .pattern(emailRegex)
-    .messages(emailMessages(3, 20))
+    .messages(emailMessages(3, 30))
     .example('peterparker@email.com'),
   isFavourite: Joi.boolean()
     .default(false)
