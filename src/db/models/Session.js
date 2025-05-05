@@ -29,7 +29,7 @@ const sessionSchema = new Schema(
 );
 
 sessionSchema.post('save', handleSaveError);
-sessionSchema.pre('findByIdAndUpdate', setUpdateSettings);
+sessionSchema.pre('findOneAndUpdate', setUpdateSettings);
 sessionSchema.post('save', handleSaveError);
 
 const SessionCollection = model('session', sessionSchema);

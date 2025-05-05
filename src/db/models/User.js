@@ -24,7 +24,7 @@ const userSchema = new Schema(
 );
 
 userSchema.post('save', handleSaveError);
-userSchema.pre('findByIdAndUpdate', setUpdateSettings);
+userSchema.pre('findOneAndUpdate', setUpdateSettings);
 userSchema.post('save', handleSaveError);
 
 userSchema.methods.toJSON = function () {
