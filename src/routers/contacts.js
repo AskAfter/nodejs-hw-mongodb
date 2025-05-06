@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-
 import {
   getContactByIdController,
   getContactsController,
@@ -9,16 +8,13 @@ import {
   patchContactController,
   deleteContactController,
 } from '../controllers/contacts.js';
-
 import { authenticate } from '../middlewares/authenticate.js';
-
 import {
   addContactSchema,
   patchContactSchema,
 } from '../validation/contacts.js';
-
+import { upload } from '../middlewares/multer.js';
 import { isValidId } from '../middlewares/isValidId.js';
-
 import { validateBody } from '../utils/validateBody.js';
 
 const router = Router();
@@ -31,6 +27,7 @@ router.get('/:id', isValidId, ctrlWrapper(getContactByIdController));
 
 router.post(
   '/',
+  upload.single('photo'),
   validateBody(addContactSchema),
   ctrlWrapper(addContactController),
 );
@@ -38,6 +35,7 @@ router.post(
 router.patch(
   '/:id',
   isValidId,
+  upload.single('photo'),
   validateBody(patchContactSchema),
   ctrlWrapper(patchContactController),
 );
