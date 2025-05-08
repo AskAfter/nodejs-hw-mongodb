@@ -54,3 +54,7 @@ export const resetPasswordSchema = Joi.object({
     .messages(passwordMessages(8, 30)),
   token: Joi.string().required(),
 });
+
+export const loginWithGoogleOAuthSchema = Joi.object({
+  code: Joi.string().required(),
+});
